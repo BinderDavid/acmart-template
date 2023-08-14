@@ -8,8 +8,15 @@ UNAME = $(shell uname)
 # #############################################################################
 
 .PHONY: all
-all:
-	latexmk
+all: review camera-ready
+
+.PHONY: review
+review:
+	latexmk review.tex
+
+.PHONY: camera-ready
+camera-ready:
+	latexmk camera-ready.tex
 
 # #############################################################################
 # Cleaning
