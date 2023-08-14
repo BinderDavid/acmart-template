@@ -1,0 +1,162 @@
+\documentclass[acmsmall,review]{acmart}
+\settopmatter{printfolios=true,printccs=true,printacmref=true}
+
+%%
+%% Journal information
+%%
+\acmJournal{PACMPL}
+\acmVolume{1}
+\acmNumber{OOPSLA}
+\acmArticle{1}
+\acmYear{2020}
+\acmMonth{1}
+\acmDOI{}
+\startPage{1}
+
+%%
+%% Copyright information
+%%
+\setcopyright{none}
+
+%%
+%% Bibliography and Citation Style
+%%
+\bibliographystyle{ACM-Reference-Format}
+\citestyle{acmauthoryear}
+
+%%
+%% Imported Packages
+%%
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage[all,cmtip]{xy}
+\usepackage[nameinlink,noabbrev,capitalise]{cleveref}
+\usepackage{csquotes}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{courier}
+\usepackage{bussproofs}
+\usepackage{tikz-cd}
+\usepackage{diagbox}
+\usepackage{afterpage}
+\usepackage[normalem]{ulem}
+\usepackage{dashbox}
+\usepackage{mdframed}
+\usepackage[mathscr]{euscript}
+\DeclareMathAlphabet\mathbfscr{U}{eus}{b}{n}
+\usepackage{colortbl}
+\usepackage{anyfontsize}
+\usepackage{listings}
+\usepackage{alltt} % verbatim with colors
+\usepackage{multicol} %for dividing into 2 columns 
+\usepackage{scalerel} %resize symbols
+
+%%
+%% Todo notes
+%%
+\usepackage[]{todonotes}
+\newcommand{\david}[2][]{\todo[inline,color=red!40,author=David,#1]{#2}}
+
+%%
+%% Macros
+%%
+\input{macros/macros.tex}
+
+% Color definitions
+
+\usepackage{xcolor}
+
+\begin{document}
+
+%%
+%% Title information
+%%
+\title{The ACME Corporation}
+\subtitle{Producing What You Need, When You Need It}
+
+%%
+%% Keywords
+%%
+\keywords{Functional programming, Lambda Calculus}
+
+%%
+%% CCS Classification
+%%
+
+\begin{CCSXML}
+  <ccs2012>
+  <concept>
+  <concept_id>10003752.10003753.10003754.10003733</concept_id>
+  <concept_desc>Theory of computation~Lambda calculus</concept_desc>
+  <concept_significance>300</concept_significance>
+  </concept>
+  <concept>
+  <concept_id>10003752.10003790.10011740</concept_id>
+  <concept_desc>Theory of computation~Type theory</concept_desc>
+  <concept_significance>300</concept_significance>
+  </concept>
+  </ccs2012>
+\end{CCSXML}
+\ccsdesc[300]{Theory of computation~Lambda calculus}
+\ccsdesc[300]{Theory of computation~Type theory}
+
+%%
+%% Author: David Binder
+%%
+\author{David Binder}
+\orcid{0000-0003-1272-0972}
+\affiliation{
+  \department{Department of Computer Science}
+  \institution{University of Tübingen}
+  \streetaddress{Sand 14}
+  \city{Tübingen}
+  \postcode{72076}
+  \country{Germany}
+}
+\email{david.binder@uni-tuebingen.de}
+
+%%
+%% Abstract
+%%
+\begin{abstract}
+    Describe in 3 logical paragraphs the structure of the paper:
+    First, give the context of this article.
+    Then, formulate the gap which exists compared to the current state of the art.
+    Last, formulate your contributions.
+\end{abstract}
+
+\maketitle
+
+%%
+%% Introduction
+%%
+\section{Introduction}
+\label{sec:intro}
+\input{sections/introduction.tex}
+
+
+%%
+%% Related Work
+%%
+\section{Related Work}
+\label{sec:related-work}
+\input{sections/relatedwork.tex}
+
+%%
+%% Conclusions
+%%
+\section{Conclusion}
+\label{sec:conclusion}
+\input{sections/conclusion.tex}
+
+%%
+%% Bibliography
+%%
+\bibliography{bibliography/bibliography.bib, bibliography/ownpublications.bib}
+
+\end{document}
