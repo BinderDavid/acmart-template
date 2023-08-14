@@ -1,5 +1,13 @@
 UNAME = $(shell uname)
 
+ifeq ($(UNAME), Linux)
+	OPEN = xdg-open
+endif
+
+ifeq ($(UNAME), Darwin)
+	OPEN = open
+endif
+
 # #############################################################################
 # Building
 #
@@ -37,17 +45,10 @@ clean:
 #
 # #############################################################################
 
-ifeq ($(UNAME), Linux)
-	OPEN = xdg-open
-endif
-
-ifeq ($(UNAME), Darwin)
-	OPEN = open
-endif
 
 .PHONY: view
 view:
-	$(OPEN) paper.pdf &
+	$(OPEN) camera-ready.pdf &
 
 # #############################################################################
 # Spellchecking
@@ -66,3 +67,32 @@ detex:
 spell: detex
 	@cat paper.txt | aspell --lang=en --add-wordlists=Allowed.txt list
 	@rm paper.txt
+
+# #############################################################################
+# Latexdiff
+#
+# Usage: make latexdiff
+#
+# #############################################################################
+
+COMPARISON = 6d26ff0711a3a584d834c53533ecb3af69a43f36
+DIFFDIR = diff-base
+.PHONY: latexdiff
+latexdiff: latexdiff-clean
+	@echo - Creating git worktree for commit $(COMPARISON)
+	git worktree add $(DIFFDIR) $(COMPARISON)
+	@echo - Expanding the files using latexpand
+	latexpand $(DIFFDIR)/camera-ready.tex --output $(DIFFDIR)/camera-ready.expanded.tex
+	latexpand camera-ready.tex --output camera-ready.expanded.tex
+	@echo - Comparing the two files with "latexdiff" and writing output to "comparison.tex"
+	latexdiff $(DIFFDIR)/camera-ready.expanded.tex camera-ready.expanded.tex > comparison.tex
+	@echo - Compiling the generated "comparison.tex"
+	latexmk comparison.tex
+	@echo - Removing the git worktree
+	git worktree remove --force $(DIFFDIR)
+
+
+.PHONY: latexdiff-clean
+latexdiff-clean:
+	git worktree remove --force $(DIFFDIR)
+	# remove expanded tex files

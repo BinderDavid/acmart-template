@@ -301,3 +301,6 @@ TSWLatexianTemp*
 #*Notes.bib
 
 paper.txt
+*.expanded.tex
+comparison.tex
+diff-base/
