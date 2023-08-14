@@ -82,7 +82,7 @@ latexdiff: latexdiff-clean
 	@echo - Creating git worktree for commit $(COMPARISON)
 	git worktree add $(DIFFDIR) $(COMPARISON)
 	@echo - Expanding the files using latexpand
-	latexpand $(DIFFDIR)/camera-ready.tex --output $(DIFFDIR)/camera-ready.expanded.tex
+	cd $(DIFFDIR); latexpand camera-ready.tex --output camera-ready.expanded.tex
 	latexpand camera-ready.tex --output camera-ready.expanded.tex
 	@echo - Comparing the two files with "latexdiff" and writing output to "comparison.tex"
 	latexdiff $(DIFFDIR)/camera-ready.expanded.tex camera-ready.expanded.tex > comparison.tex
@@ -94,5 +94,5 @@ latexdiff: latexdiff-clean
 
 .PHONY: latexdiff-clean
 latexdiff-clean:
-	git worktree remove --force $(DIFFDIR)
+	git worktree remove --force $(DIFFDIR) || true
 	# remove expanded tex files
