@@ -1,5 +1,35 @@
 UNAME = $(shell uname)
 
+# #############################################################################
+# Building
+#
+# Usage: make
+#
+# #############################################################################
+
+.PHONY: all
+all:
+	latexmk
+
+# #############################################################################
+# Cleaning
+#
+# Usage: make clean
+#
+# #############################################################################
+
+.PHONY: clean
+clean:
+	latexmk -C
+	rm paper.txt
+
+# #############################################################################
+# Opening file
+#
+# Usage: make view
+#
+# #############################################################################
+
 ifeq ($(UNAME), Linux)
 	OPEN = xdg-open
 endif
@@ -12,11 +42,12 @@ endif
 view:
 	$(OPEN) paper.pdf &
 
-.PHONY: clean
-clean:
-	latexmk -C
-	rm paper.txt
-
+# #############################################################################
+# Spellchecking
+#
+# Usage: make spell
+#
+# #############################################################################
 
 # The content of these latexenvironments is ignored by the detex target
 DETEXIGNORE = array,eqnarray,equation,longtable,picture,tabular,verbatim,CCSXML
